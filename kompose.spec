@@ -1,11 +1,12 @@
 Name: kompose
 Summary: Provides a full screen view of all open windows
 Version: 0.5.3
-Release: 3%{?dist}
+Release: 4%{?dist}
 License: GPL
 Group: User Interface/X
 Url: http://kompose.berlios.de
 Source: http://download.berlios.de/kompose/%{name}-%{version}.tar.bz2
+Patch0: kompose-0.5.3-x.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires: kdelibs-devel >= 3.2, imlib2-devel
 Requires: kdebase
@@ -19,12 +20,15 @@ The Composite extension is used if available from the X server.
 
 %prep
 %setup -q
+%patch -p1 -b .x
+
 
 %build
 unset QTDIR || : ; . /etc/profile.d/qt.sh
 export QTLIB=${QTDIR}/lib QTINC=${QTDIR}/include
 %configure --disable-rpath
 make %{?_smp_mflags}
+
 
 %install
 %makeinstall
@@ -63,6 +67,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/kompose.png
 
 %changelog
+* Thu Dec 22 2005 - Orion Poplawski <orion@cora.nwra.com> 0.5.3-4
+- Add patch to remove X checks in configure for modular X
+
 * Mon Jul 25 2005 - Orion Poplawski <orion@cora.nwra.com> 0.5.3-3
 - Requires kdebase
 - Fix doc symlink.

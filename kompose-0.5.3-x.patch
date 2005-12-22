@@ -1,0 +1,538 @@
+--- kompose-0.5.4/configure.orig	2005-11-11 14:25:22.000000000 -0700
++++ kompose-0.5.4/configure	2005-11-21 13:16:23.000000000 -0700
+@@ -26605,535 +26605,6 @@
+ 
+ fi;
+ 
+-if test "$kde_use_qt_emb" = "no" && test "$kde_use_qt_mac" = "no"; then
+-
+-echo "$as_me:$LINENO: checking for X" >&5
+-echo $ECHO_N "checking for X... $ECHO_C" >&6
+-
+-if test "${kde_cv_have_x+set}" = set; then
+-  echo $ECHO_N "(cached) $ECHO_C" >&6
+-else
+-  # One or both of the vars are not set, and there is no cached value.
+-if test "{$x_includes+set}" = set || test "$x_includes" = NONE; then
+-   kde_x_includes=NO
+-else
+-   kde_x_includes=$x_includes
+-fi
+-if test "{$x_libraries+set}" = set || test "$x_libraries" = NONE; then
+-   kde_x_libraries=NO
+-else
+-   kde_x_libraries=$x_libraries
+-fi
+-
+-# below we use the standard autoconf calls
+-ac_x_libraries=$kde_x_libraries
+-ac_x_includes=$kde_x_includes
+-
+-
+-
+-
+-if test "$ac_x_includes" = NO; then
+-  # Guess where to find include files, by looking for this one X11 .h file.
+-  test -z "$x_direct_test_include" && x_direct_test_include=X11/Intrinsic.h
+-
+-  # First, try using that file with no special directory specified.
+-cat >conftest.$ac_ext <<_ACEOF
+-/* confdefs.h.  */
+-_ACEOF
+-cat confdefs.h >>conftest.$ac_ext
+-cat >>conftest.$ac_ext <<_ACEOF
+-/* end confdefs.h.  */
+-#include <$x_direct_test_include>
+-_ACEOF
+-if { (eval echo "$as_me:$LINENO: \"$ac_cpp conftest.$ac_ext\"") >&5
+-  (eval $ac_cpp conftest.$ac_ext) 2>conftest.er1
+-  ac_status=$?
+-  grep -v '^ *+' conftest.er1 >conftest.err
+-  rm -f conftest.er1
+-  cat conftest.err >&5
+-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+-  (exit $ac_status); } >/dev/null; then
+-  if test -s conftest.err; then
+-    ac_cpp_err=$ac_c_preproc_warn_flag
+-    ac_cpp_err=$ac_cpp_err$ac_c_werror_flag
+-  else
+-    ac_cpp_err=
+-  fi
+-else
+-  ac_cpp_err=yes
+-fi
+-if test -z "$ac_cpp_err"; then
+-  # We can compile using X headers with no special include directory.
+-ac_x_includes=
+-else
+-  echo "$as_me: failed program was:" >&5
+-sed 's/^/| /' conftest.$ac_ext >&5
+-
+-  # Look for the header file in a standard set of common directories.
+-# Check X11 before X11Rn because it is often a symlink to the current release.
+-  for ac_dir in               \
+-    /usr/X11/include          \
+-    /usr/X11R6/include        \
+-    /usr/X11R5/include        \
+-    /usr/X11R4/include        \
+-                              \
+-    /usr/include/X11          \
+-    /usr/include/X11R6        \
+-    /usr/include/X11R5        \
+-    /usr/include/X11R4        \
+-                              \
+-    /usr/local/X11/include    \
+-    /usr/local/X11R6/include  \
+-    /usr/local/X11R5/include  \
+-    /usr/local/X11R4/include  \
+-                              \
+-    /usr/local/include/X11    \
+-    /usr/local/include/X11R6  \
+-    /usr/local/include/X11R5  \
+-    /usr/local/include/X11R4  \
+-                              \
+-    /usr/X386/include         \
+-    /usr/x386/include         \
+-    /usr/XFree86/include/X11  \
+-                              \
+-    /usr/include              \
+-    /usr/local/include        \
+-    /usr/unsupported/include  \
+-    /usr/athena/include       \
+-    /usr/local/x11r5/include  \
+-    /usr/lpp/Xamples/include  \
+-                              \
+-    /usr/openwin/include      \
+-    /usr/openwin/share/include \
+-    ; \
+-  do
+-    if test -r "$ac_dir/$x_direct_test_include"; then
+-      ac_x_includes=$ac_dir
+-      break
+-    fi
+-  done
+-fi
+-rm -f conftest.err conftest.$ac_ext
+-fi # $ac_x_includes = NO
+-
+-if test "$ac_x_libraries" = NO; then
+-  # Check for the libraries.
+-
+-  test -z "$x_direct_test_library" && x_direct_test_library=Xt
+-  test -z "$x_direct_test_function" && x_direct_test_function=XtMalloc
+-
+-  # See if we find them without any special options.
+-  # Don't add to $LIBS permanently.
+-  ac_save_LIBS="$LIBS"
+-  LIBS="-l$x_direct_test_library $LIBS"
+-cat >conftest.$ac_ext <<_ACEOF
+-/* confdefs.h.  */
+-_ACEOF
+-cat confdefs.h >>conftest.$ac_ext
+-cat >>conftest.$ac_ext <<_ACEOF
+-/* end confdefs.h.  */
+-
+-int
+-main ()
+-{
+-${x_direct_test_function}()
+-  ;
+-  return 0;
+-}
+-_ACEOF
+-rm -f conftest.$ac_objext conftest$ac_exeext
+-if { (eval echo "$as_me:$LINENO: \"$ac_link\"") >&5
+-  (eval $ac_link) 2>conftest.er1
+-  ac_status=$?
+-  grep -v '^ *+' conftest.er1 >conftest.err
+-  rm -f conftest.er1
+-  cat conftest.err >&5
+-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+-  (exit $ac_status); } &&
+-	 { ac_try='test -z "$ac_c_werror_flag"
+-			 || test ! -s conftest.err'
+-  { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
+-  (eval $ac_try) 2>&5
+-  ac_status=$?
+-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+-  (exit $ac_status); }; } &&
+-	 { ac_try='test -s conftest$ac_exeext'
+-  { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
+-  (eval $ac_try) 2>&5
+-  ac_status=$?
+-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+-  (exit $ac_status); }; }; then
+-  LIBS="$ac_save_LIBS"
+-# We can link X programs with no special library path.
+-ac_x_libraries=
+-else
+-  echo "$as_me: failed program was:" >&5
+-sed 's/^/| /' conftest.$ac_ext >&5
+-
+-LIBS="$ac_save_LIBS"
+-# First see if replacing the include by lib works.
+-# Check X11 before X11Rn because it is often a symlink to the current release.
+-for ac_dir in `echo "$ac_x_includes" | sed s/include/lib${kdelibsuff}/` \
+-    /usr/X11/lib${kdelibsuff}           \
+-    /usr/X11R6/lib${kdelibsuff}         \
+-    /usr/X11R5/lib${kdelibsuff}         \
+-    /usr/X11R4/lib${kdelibsuff}         \
+-                                        \
+-    /usr/lib${kdelibsuff}/X11           \
+-    /usr/lib${kdelibsuff}/X11R6         \
+-    /usr/lib${kdelibsuff}/X11R5         \
+-    /usr/lib${kdelibsuff}/X11R4         \
+-                                        \
+-    /usr/local/X11/lib${kdelibsuff}     \
+-    /usr/local/X11R6/lib${kdelibsuff}   \
+-    /usr/local/X11R5/lib${kdelibsuff}   \
+-    /usr/local/X11R4/lib${kdelibsuff}   \
+-                                        \
+-    /usr/local/lib${kdelibsuff}/X11     \
+-    /usr/local/lib${kdelibsuff}/X11R6   \
+-    /usr/local/lib${kdelibsuff}/X11R5   \
+-    /usr/local/lib${kdelibsuff}/X11R4   \
+-                                        \
+-    /usr/X386/lib${kdelibsuff}          \
+-    /usr/x386/lib${kdelibsuff}          \
+-    /usr/XFree86/lib${kdelibsuff}/X11   \
+-                                        \
+-    /usr/lib${kdelibsuff}               \
+-    /usr/local/lib${kdelibsuff}         \
+-    /usr/unsupported/lib${kdelibsuff}   \
+-    /usr/athena/lib${kdelibsuff}        \
+-    /usr/local/x11r5/lib${kdelibsuff}   \
+-    /usr/lpp/Xamples/lib${kdelibsuff}   \
+-    /lib/usr/lib${kdelibsuff}/X11       \
+-                                        \
+-    /usr/openwin/lib${kdelibsuff}       \
+-    /usr/openwin/share/lib${kdelibsuff} \
+-    ; \
+-do
+-  for ac_extension in a so sl; do
+-    if test -r $ac_dir/lib${x_direct_test_library}.$ac_extension; then
+-      ac_x_libraries=$ac_dir
+-      break 2
+-    fi
+-  done
+-done
+-fi
+-rm -f conftest.err conftest.$ac_objext \
+-      conftest$ac_exeext conftest.$ac_ext
+-fi # $ac_x_libraries = NO
+-
+-case "$host" in
+-mips-sgi-irix6*)
+-  ;;
+-*-*-solaris*)
+-  ;;
+-*)
+-  rm -fr conftest.dir
+-if mkdir conftest.dir; then
+-  cd conftest.dir
+-  # Make sure to not put "make" in the Imakefile rules, since we grep it out.
+-  cat >Imakefile <<'_ACEOF'
+-acfindx:
+-	@echo 'ac_im_incroot="${INCROOT}"; ac_im_usrlibdir="${USRLIBDIR}"; ac_im_libdir="${LIBDIR}"'
+-_ACEOF
+-  if (xmkmf) >/dev/null 2>/dev/null && test -f Makefile; then
+-    # GNU make sometimes prints "make[1]: Entering...", which would confuse us.
+-    eval `${MAKE-make} acfindx 2>/dev/null | grep -v make`
+-    # Open Windows xmkmf reportedly sets LIBDIR instead of USRLIBDIR.
+-    for ac_extension in a so sl; do
+-      if test ! -f $ac_im_usrlibdir/libX11.$ac_extension &&
+-	 test -f $ac_im_libdir/libX11.$ac_extension; then
+-	ac_im_usrlibdir=$ac_im_libdir; break
+-      fi
+-    done
+-    # Screen out bogus values from the imake configuration.  They are
+-    # bogus both because they are the default anyway, and because
+-    # using them would break gcc on systems where it needs fixed includes.
+-    case $ac_im_incroot in
+-	/usr/include) ;;
+-	*) test -f "$ac_im_incroot/X11/Xos.h" && ac_x_includes=$ac_im_incroot;;
+-    esac
+-    case $ac_im_usrlibdir in
+-	/usr/lib | /lib) ;;
+-	*) test -d "$ac_im_usrlibdir" && ac_x_libraries=$ac_im_usrlibdir ;;
+-    esac
+-  fi
+-  cd ..
+-  rm -fr conftest.dir
+-fi
+-
+-  if test -z "$ac_x_includes"; then
+-    ac_x_includes="."
+-  fi
+-  if test -z "$ac_x_libraries"; then
+-    ac_x_libraries="/usr/lib${kdelibsuff}"
+-  fi
+-esac
+-#from now on we use our own again
+-
+-# when the user already gave --x-includes, we ignore
+-# what the standard autoconf macros told us.
+-if test "$kde_x_includes" = NO; then
+-  kde_x_includes=$ac_x_includes
+-fi
+-
+-# for --x-libraries too
+-if test "$kde_x_libraries" = NO; then
+-  kde_x_libraries=$ac_x_libraries
+-fi
+-
+-if test "$kde_x_includes" = NO; then
+-  { { echo "$as_me:$LINENO: error: Can't find X includes. Please check your installation and add the correct paths!" >&5
+-echo "$as_me: error: Can't find X includes. Please check your installation and add the correct paths!" >&2;}
+-   { (exit 1); exit 1; }; }
+-fi
+-
+-if test "$kde_x_libraries" = NO; then
+-  { { echo "$as_me:$LINENO: error: Can't find X libraries. Please check your installation and add the correct paths!" >&5
+-echo "$as_me: error: Can't find X libraries. Please check your installation and add the correct paths!" >&2;}
+-   { (exit 1); exit 1; }; }
+-fi
+-
+-# Record where we found X for the cache.
+-kde_cv_have_x="have_x=yes \
+-         kde_x_includes=$kde_x_includes kde_x_libraries=$kde_x_libraries"
+-
+-fi
+-
+-eval "$kde_cv_have_x"
+-
+-if test "$have_x" != yes; then
+-  echo "$as_me:$LINENO: result: $have_x" >&5
+-echo "${ECHO_T}$have_x" >&6
+-  no_x=yes
+-else
+-  echo "$as_me:$LINENO: result: libraries $kde_x_libraries, headers $kde_x_includes" >&5
+-echo "${ECHO_T}libraries $kde_x_libraries, headers $kde_x_includes" >&6
+-fi
+-
+-if test -z "$kde_x_includes" || test "x$kde_x_includes" = xNONE; then
+-  X_INCLUDES=""
+-  x_includes=".";  else
+-  x_includes=$kde_x_includes
+-  X_INCLUDES="-I$x_includes"
+-fi
+-
+-if test -z "$kde_x_libraries" || test "x$kde_x_libraries" = xNONE; then
+-  X_LDFLAGS=""
+-  x_libraries="/usr/lib";  else
+-  x_libraries=$kde_x_libraries
+-  X_LDFLAGS="-L$x_libraries"
+-fi
+-all_includes="$X_INCLUDES"
+-all_libraries="$X_LDFLAGS"
+-
+-# Check for libraries that X11R6 Xt/Xaw programs need.
+-ac_save_LDFLAGS="$LDFLAGS"
+-LDFLAGS="$LDFLAGS $X_LDFLAGS"
+-# SM needs ICE to (dynamically) link under SunOS 4.x (so we have to
+-# check for ICE first), but we must link in the order -lSM -lICE or
+-# we get undefined symbols.  So assume we have SM if we have ICE.
+-# These have to be linked with before -lX11, unlike the other
+-# libraries we check for below, so use a different variable.
+-#  --interran@uluru.Stanford.EDU, kb@cs.umb.edu.
+-echo "$as_me:$LINENO: checking for IceConnectionNumber in -lICE" >&5
+-echo $ECHO_N "checking for IceConnectionNumber in -lICE... $ECHO_C" >&6
+-if test "${ac_cv_lib_ICE_IceConnectionNumber+set}" = set; then
+-  echo $ECHO_N "(cached) $ECHO_C" >&6
+-else
+-  ac_check_lib_save_LIBS=$LIBS
+-LIBS="-lICE $X_EXTRA_LIBS $LIBS"
+-cat >conftest.$ac_ext <<_ACEOF
+-/* confdefs.h.  */
+-_ACEOF
+-cat confdefs.h >>conftest.$ac_ext
+-cat >>conftest.$ac_ext <<_ACEOF
+-/* end confdefs.h.  */
+-
+-/* Override any gcc2 internal prototype to avoid an error.  */
+-#ifdef __cplusplus
+-extern "C"
+-#endif
+-/* We use char because int might match the return type of a gcc2
+-   builtin and then its argument prototype would still apply.  */
+-char IceConnectionNumber ();
+-int
+-main ()
+-{
+-IceConnectionNumber ();
+-  ;
+-  return 0;
+-}
+-_ACEOF
+-rm -f conftest.$ac_objext conftest$ac_exeext
+-if { (eval echo "$as_me:$LINENO: \"$ac_link\"") >&5
+-  (eval $ac_link) 2>conftest.er1
+-  ac_status=$?
+-  grep -v '^ *+' conftest.er1 >conftest.err
+-  rm -f conftest.er1
+-  cat conftest.err >&5
+-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+-  (exit $ac_status); } &&
+-	 { ac_try='test -z "$ac_c_werror_flag"
+-			 || test ! -s conftest.err'
+-  { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
+-  (eval $ac_try) 2>&5
+-  ac_status=$?
+-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+-  (exit $ac_status); }; } &&
+-	 { ac_try='test -s conftest$ac_exeext'
+-  { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
+-  (eval $ac_try) 2>&5
+-  ac_status=$?
+-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+-  (exit $ac_status); }; }; then
+-  ac_cv_lib_ICE_IceConnectionNumber=yes
+-else
+-  echo "$as_me: failed program was:" >&5
+-sed 's/^/| /' conftest.$ac_ext >&5
+-
+-ac_cv_lib_ICE_IceConnectionNumber=no
+-fi
+-rm -f conftest.err conftest.$ac_objext \
+-      conftest$ac_exeext conftest.$ac_ext
+-LIBS=$ac_check_lib_save_LIBS
+-fi
+-echo "$as_me:$LINENO: result: $ac_cv_lib_ICE_IceConnectionNumber" >&5
+-echo "${ECHO_T}$ac_cv_lib_ICE_IceConnectionNumber" >&6
+-if test $ac_cv_lib_ICE_IceConnectionNumber = yes; then
+-  LIBSM="-lSM -lICE"
+-fi
+-
+-LDFLAGS="$ac_save_LDFLAGS"
+-
+-LIB_X11='-lX11 $(LIBSOCKET)'
+-
+-echo "$as_me:$LINENO: checking for libXext" >&5
+-echo $ECHO_N "checking for libXext... $ECHO_C" >&6
+-if test "${kde_cv_have_libXext+set}" = set; then
+-  echo $ECHO_N "(cached) $ECHO_C" >&6
+-else
+-
+-kde_ldflags_safe="$LDFLAGS"
+-kde_libs_safe="$LIBS"
+-
+-LDFLAGS="$LDFLAGS $X_LDFLAGS $USER_LDFLAGS"
+-LIBS="-lXext -lX11 $LIBSOCKET"
+-
+-cat >conftest.$ac_ext <<_ACEOF
+-/* confdefs.h.  */
+-_ACEOF
+-cat confdefs.h >>conftest.$ac_ext
+-cat >>conftest.$ac_ext <<_ACEOF
+-/* end confdefs.h.  */
+-
+-#include <stdio.h>
+-#ifdef STDC_HEADERS
+-# include <stdlib.h>
+-#endif
+-
+-int
+-main ()
+-{
+-
+-printf("hello Xext\n");
+-
+-  ;
+-  return 0;
+-}
+-_ACEOF
+-rm -f conftest.$ac_objext conftest$ac_exeext
+-if { (eval echo "$as_me:$LINENO: \"$ac_link\"") >&5
+-  (eval $ac_link) 2>conftest.er1
+-  ac_status=$?
+-  grep -v '^ *+' conftest.er1 >conftest.err
+-  rm -f conftest.er1
+-  cat conftest.err >&5
+-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+-  (exit $ac_status); } &&
+-	 { ac_try='test -z "$ac_c_werror_flag"
+-			 || test ! -s conftest.err'
+-  { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
+-  (eval $ac_try) 2>&5
+-  ac_status=$?
+-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+-  (exit $ac_status); }; } &&
+-	 { ac_try='test -s conftest$ac_exeext'
+-  { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
+-  (eval $ac_try) 2>&5
+-  ac_status=$?
+-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+-  (exit $ac_status); }; }; then
+-  kde_cv_have_libXext=yes
+-else
+-  echo "$as_me: failed program was:" >&5
+-sed 's/^/| /' conftest.$ac_ext >&5
+-
+-kde_cv_have_libXext=no
+-
+-fi
+-rm -f conftest.err conftest.$ac_objext \
+-      conftest$ac_exeext conftest.$ac_ext
+-
+-LDFLAGS=$kde_ldflags_safe
+-LIBS=$kde_libs_safe
+-
+-fi
+-
+-
+-echo "$as_me:$LINENO: result: $kde_cv_have_libXext" >&5
+-echo "${ECHO_T}$kde_cv_have_libXext" >&6
+-
+-if test "$kde_cv_have_libXext" = "no"; then
+-  { { echo "$as_me:$LINENO: error: We need a working libXext to proceed. Since configure
+-can't find it itself, we stop here assuming that make wouldn't find
+-them either." >&5
+-echo "$as_me: error: We need a working libXext to proceed. Since configure
+-can't find it itself, we stop here assuming that make wouldn't find
+-them either." >&2;}
+-   { (exit 1); exit 1; }; }
+-fi
+-
+-LIB_XEXT="-lXext"
+-QTE_NORTTI=""
+-
+-elif test "$kde_use_qt_emb" = "yes"; then
+-    CPPFLAGS=-DQWS
+-  CXXFLAGS="$CXXFLAGS -fno-rtti"
+-  QTE_NORTTI="-fno-rtti -DQWS"
+-  X_PRE_LIBS=""
+-  LIB_X11=""
+-  LIB_XEXT=""
+-  LIB_XRENDER=""
+-  LIBSM=""
+-  X_INCLUDES=""
+-  X_LDFLAGS=""
+-  x_includes=""
+-  x_libraries=""
+-elif test "$kde_use_qt_mac" = "yes"; then
+-      CXXFLAGS="$CXXFLAGS -DQT_MAC -no-cpp-precomp"
+-  CFLAGS="$CFLAGS -DQT_MAC -no-cpp-precomp"
+-  X_PRE_LIBS=""
+-  LIB_X11=""
+-  LIB_XEXT=""
+-  LIB_XRENDER=""
+-  LIBSM=""
+-  X_INCLUDES=""
+-  X_LDFLAGS=""
+-  x_includes=""
+-  x_libraries=""
+-fi
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+ 
+ 
+   LIBPTHREAD=""
