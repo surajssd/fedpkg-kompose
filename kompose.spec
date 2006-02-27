@@ -1,7 +1,7 @@
 Name: kompose
 Summary: Provides a full screen view of all open windows
 Version: 0.5.3
-Release: 4%{?dist}
+Release: 5%{?dist}
 License: GPL
 Group: User Interface/X
 Url: http://kompose.berlios.de
@@ -67,6 +67,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/kompose.png
 
 %changelog
+* Mon Feb 27 2006 - Orion Poplawski <orion@cora.nwra.com> 0.5.3-5
+- Rebuild for FE5
+
 * Thu Dec 22 2005 - Orion Poplawski <orion@cora.nwra.com> 0.5.3-4
 - Add patch to remove X checks in configure for modular X
 
