@@ -1,7 +1,7 @@
 Name: kompose
 Summary: Provides a full screen view of all open windows
-Version: 0.5.3
-Release: 5%{?dist}
+Version: 0.5.4
+Release: 2%{?dist}
 License: GPL
 Group: User Interface/X
 Url: http://kompose.berlios.de
@@ -12,7 +12,7 @@ BuildRequires: kdelibs-devel >= 3.2, imlib2-devel
 Requires: kdebase
 
 %description
-Komposé currently allows a fullscreen view of all your virtual desktops where
+KomposÃ© currently allows a fullscreen view of all your virtual desktops where
 every window is represented by a scaled screenshot of it's own.
 
 The Composite extension is used if available from the X server.
@@ -67,6 +67,13 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/kompose.png
 
 %changelog
+* Tue Aug 29 2006 - Orion Poplawski <orion@cora.nwra.com> 0.5.4-2
+- Rebuild for FC6
+
+* Mon Jun 12 2006 - Orion Poplawski <orion@cora.nwra.com> 0.5.4-1
+- Update to 0.5.4
+- Make description UTF-8
+
 * Mon Feb 27 2006 - Orion Poplawski <orion@cora.nwra.com> 0.5.3-5
 - Rebuild for FE5
 
