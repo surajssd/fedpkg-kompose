@@ -1,7 +1,7 @@
 Name: kompose
 Summary: Provides a full screen view of all open windows
 Version: 0.5.3
-Release: 6%{?dist}
+Release: 7%{?dist}
 License: GPL
 Group: User Interface/X
 Url: http://kompose.berlios.de
@@ -67,6 +67,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/kompose.png
 
 %changelog
+* Wed Oct 25 2006 - Orion Poplawski <orion@cora.nwra.com> 0.5.3-7
+- Rebuild for new imlib2
+
 * Tue Aug 29 2006 - Orion Poplawski <orion@cora.nwra.com> 0.5.3-6
 - Revert to 0.5.3 and rebuild for FC6.  0.5.4 does not compile
 
