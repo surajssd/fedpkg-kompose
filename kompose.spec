@@ -36,7 +36,6 @@ desktop-file-install --vendor=fedora \
        --add-category=Qt \
        --add-category=KDE \
        --add-category=Utility \
-       --add-category=X-Fedora \
        --delete-original --dir %{buildroot}%{_datadir}/applications \
        $RPM_BUILD_ROOT%{_datadir}/applnk/Utilities/kompose.desktop
 install -D src/hi32-app-kompose.png $RPM_BUILD_ROOT%{_datadir}/pixmaps/kompose.png
@@ -67,8 +66,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/kompose.png
 
 %changelog
-* Wed Oct 25 2006 - Orion Poplawski <orion@cora.nwra.com> 0.5.3-7
+* Mon Oct 30 2006 - Orion Poplawski <orion@cora.nwra.com> 0.5.3-7
 - Rebuild for new imlib2
+- Remove X-Fedora desktop category
 
 * Tue Aug 29 2006 - Orion Poplawski <orion@cora.nwra.com> 0.5.3-6
 - Revert to 0.5.3 and rebuild for FC6.  0.5.4 does not compile
