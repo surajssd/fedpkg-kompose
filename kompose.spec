@@ -1,8 +1,8 @@
 Name: kompose
 Summary: Provides a full screen view of all open windows
 Version: 0.5.3
-Release: 7%{?dist}
-License: GPL
+Release: 8%{?dist}
+License: GPLv2+
 Group: User Interface/X
 Url: http://kompose.berlios.de
 Source: http://download.berlios.de/kompose/%{name}-%{version}.tar.bz2
@@ -66,6 +66,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/kompose.png
 
 %changelog
+* Tue Aug 21 2007 - Orion Poplawski <orion@cora.nwra.com> 0.5.3-8
+- Update license tag to GPLv2+
+- Rebuild for BuildID
+
 * Mon Oct 30 2006 - Orion Poplawski <orion@cora.nwra.com> 0.5.3-7
 - Rebuild for new imlib2
 - Remove X-Fedora desktop category
