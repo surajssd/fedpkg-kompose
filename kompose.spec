@@ -1,15 +1,15 @@
 Name: kompose
 Summary: Provides a full screen view of all open windows
 Version: 0.5.3
-Release: 8%{?dist}
+Release: 9%{?dist}
 License: GPLv2+
 Group: User Interface/X
 Url: http://kompose.berlios.de
 Source: http://download.berlios.de/kompose/%{name}-%{version}.tar.bz2
 Patch0: kompose-0.5.3-x.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-BuildRequires: kdelibs-devel >= 3.2, imlib2-devel
-Requires: kdebase
+BuildRequires: kdelibs3-devel >= 3.2, imlib2-devel
+Requires: kdebase3
 
 %description
 Komposé currently allows a fullscreen view of all your virtual desktops where
@@ -66,6 +66,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/kompose.png
 
 %changelog
+* Wed Jan  9 2008 - Orion Poplawski <orion@cora.nwra.com> 0.5.3-9
+- Change BR to kdelibs3-devel
+
 * Tue Aug 21 2007 - Orion Poplawski <orion@cora.nwra.com> 0.5.3-8
 - Update license tag to GPLv2+
 - Rebuild for BuildID
