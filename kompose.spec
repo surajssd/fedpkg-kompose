@@ -1,7 +1,7 @@
 Name: kompose
 Summary: Provides a full screen view of all open windows
 Version: 0.5.3
-Release: 9%{?dist}
+Release: 10%{?dist}
 License: GPLv2+
 Group: User Interface/X
 Url: http://kompose.berlios.de
@@ -66,6 +66,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/kompose.png
 
 %changelog
+* Tue Feb 19 2008 Fedora Release Engineering <rel-eng@fedoraproject.org> - 0.5.3-10
+- Autorebuild for GCC 4.3
+
 * Wed Jan  9 2008 - Orion Poplawski <orion@cora.nwra.com> 0.5.3-9
 - Change BR to kdelibs3-devel
 
