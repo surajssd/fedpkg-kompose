@@ -1,7 +1,7 @@
 Name: kompose
 Summary: Provides a full screen view of all open windows
 Version: 0.5.3
-Release: 10%{?dist}
+Release: 11%{?dist}
 License: GPLv2+
 Group: User Interface/X
 Url: http://kompose.berlios.de
@@ -9,6 +9,7 @@ Source: http://download.berlios.de/kompose/%{name}-%{version}.tar.bz2
 Patch0: kompose-0.5.3-x.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires: kdelibs3-devel >= 3.2, imlib2-devel
+BuildRequires: libXcomposite-devel, libXdamage-devel
 Requires: kdebase3
 
 %description
@@ -66,6 +67,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/kompose.png
 
 %changelog
+* Fri Mar 14 2008 Fedora Release Engineering <rel-eng@fedoraproject.org> - 0.5.3-11
+- Add BR libXcomposite-devel and libXdamage-devel
+
 * Tue Feb 19 2008 Fedora Release Engineering <rel-eng@fedoraproject.org> - 0.5.3-10
 - Autorebuild for GCC 4.3
 
