@@ -1,7 +1,7 @@
 Name: kompose
 Summary: Provides a full screen view of all open windows
 Version: 0.5.3
-Release: 12%{?dist}
+Release: 13%{?dist}
 License: GPLv2+
 Group: User Interface/X
 Url: http://kompose.berlios.de
@@ -20,7 +20,7 @@ The Composite extension is used if available from the X server.
 
 %prep
 %setup -q
-%patch -p1 -b .x
+%patch0 -p1 -b .x
 
 
 %build
@@ -66,6 +66,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/kompose.png
 
 %changelog
+* Wed Sep 3 2008 Orion Poplawski <orion@cora.nwra.com> - 0.5.3-13
+- Change %%patch -> %%patch0
+
 * Mon Mar 17 2008 Fedora Release Engineering <rel-eng@fedoraproject.org> - 0.5.3-12
 - Drop Requires kdebase3
 
