@@ -1,0 +1,17 @@
+#grab gofed from https://github.com/gofed/gofed
+#follow instructions for install
+
+#choose which version of the repo you want to build. For kompose it was 0.1.0 and the commit was 822768446621d71ffd02eafd138db0d8ab4a7d0e
+
+#run the following to generate spec file:
+gofed repo2spec --detect github.com/skippbox/kompose --commit 822768446621d71ffd02eafd138db0d8ab4a7d0e --with-extra --with-build -f
+
+
+# spec file now at:
+/home/vagrant/golang-github-skippbox-kompose/golang-github-skippbox-kompose.spec
+
+# go through and fix up things - see diff
+
+# generate bundled provides by copying using parsedeps.go
+# to the Godeps folder and then running `go run parsedeps.go`
+# should be done by gofed at some point - https://github.com/gofed/gofed/issues/42
