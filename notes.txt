@@ -1,14 +1,14 @@
 #grab gofed from https://github.com/gofed/gofed
 #follow instructions for install
 
-#choose which version of the repo you want to build. For kompose it was 0.1.0 and the commit was 822768446621d71ffd02eafd138db0d8ab4a7d0e
+#choose which version of the repo you want to build. For kompose it was 0.1.2 and the commit was 92ea0477f10facebfeb499d1ae7af6288763c4ec
 
 #run the following to generate spec file:
-gofed repo2spec --detect github.com/skippbox/kompose --commit 822768446621d71ffd02eafd138db0d8ab4a7d0e --with-extra --with-build -f
+gofed repo2spec --detect github.com/kubernetes-incubator/kompose --commit 92ea0477f10facebfeb499d1ae7af6288763c4ec --with-extra --with-build -f
 
 
 # spec file now at:
-/home/vagrant/golang-github-skippbox-kompose/golang-github-skippbox-kompose.spec
+/home/vagrant/golang-github-kubernetes-incubator-kompose/golang-github-kubernetes-incubator-kompose.spec
 
 # go through and fix up things - see diff
 
