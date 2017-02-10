@@ -48,7 +48,7 @@
 
 Name:           kompose
 Version:        0.1.2
-Release:        0.1.git%{shortcommit}%{?dist}
+Release:        0.2.git%{shortcommit}%{?dist}
 Summary:        Tool to move from `docker-compose` to Kubernetes
 License:        ASL 2.0
 URL:            https://%{provider_prefix}
@@ -787,6 +787,9 @@ export LDFLAGS=%{ldflags}
 %endif
 
 %changelog
+* Fri Feb 10 2017 Fedora Release Engineering <releng@fedoraproject.org> - 0.1.2-0.2.git92ea047
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_26_Mass_Rebuild
+
 * Sat Nov 26 2016 Dusty Mabe <dusty@dustymabe.com> - 0.1.2-0.1.git92ea047
 - Update to kompose version 0.1.2
 
