@@ -978,7 +978,7 @@ export LDFLAGS=%{ldflags}
 %endif
 
 %changelog
-* Sat Feb 25 2017 Suraj Deshmukh <surajssd009005@gmail.com> - 0-0.1.git135165b
+* Sat Feb 25 2017 Suraj Deshmukh <surajssd009005@gmail.com> - 0.3.0-0.1.git135165b
 - Update to kompose version 0.3.0
 
 * Fri Feb 10 2017 Fedora Release Engineering <releng@fedoraproject.org> - 0.1.2-0.2.git92ea047
