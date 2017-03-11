@@ -2,10 +2,15 @@
 # Not all devel deps exist in Fedora so you can't
 # install the devel rpm so we need to build without
 # devel or unit_test for now
+# Generate devel rpm
 %global with_devel 0
+# Build project from bundled dependencies
 %global with_bundled 1
+# Build with debug info rpm
 %global with_debug 1
+# Run tests in check section
 %global with_check 1
+# Generate unit-test rpm
 %global with_unit_test 0
 %else
 %global with_devel 0
@@ -869,6 +874,7 @@ providing packages with %{import_path} prefix.
 # set up temporary build gopath in pwd
 mkdir -p src/%{provider}.%{provider_tld}/%{project}
 ln -s ../../../ src/%{import_path}
+
 %if ! 0%{?with_bundled}
 export GOPATH=$(pwd):%{gopath}
 %else
@@ -955,20 +961,20 @@ export LDFLAGS=%{ldflags}
 
 %files
 %license LICENSE
-%doc CHANGELOG.md CONTRIBUTING.md README.md RELEASE.md ROADMAP.md code-of-conduct.md
+%doc CHANGELOG.md ROADMAP.md CONTRIBUTING.md code-of-conduct.md README.md RELEASE.md
 %{_bindir}/kompose
 
 %if 0%{?with_devel}
 %files devel -f devel.file-list
 %license LICENSE
-%doc CHANGELOG.md CONTRIBUTING.md README.md RELEASE.md ROADMAP.md code-of-conduct.md
+%doc CHANGELOG.md ROADMAP.md CONTRIBUTING.md code-of-conduct.md README.md RELEASE.md
 %dir %{gopath}/src/%{provider}.%{provider_tld}/%{project}
 %endif
 
 %if 0%{?with_unit_test} && 0%{?with_devel}
 %files unit-test-devel -f unit-test-devel.file-list
 %license LICENSE
-%doc CHANGELOG.md CONTRIBUTING.md README.md RELEASE.md ROADMAP.md code-of-conduct.md
+%doc CHANGELOG.md ROADMAP.md CONTRIBUTING.md code-of-conduct.md README.md RELEASE.md
 %endif
 
 %changelog
