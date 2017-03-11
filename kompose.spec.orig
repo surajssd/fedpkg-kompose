@@ -48,7 +48,7 @@ Version:        0
 Release:        0.1.git%{shortcommit}%{?dist}
 Summary:        !!!!FILL!!!!
 # Detected licences
-# - UNKNOWN at 'LICENSE'
+# - Unknown at 'LICENSE'
 License:        !!!!FILL!!!!
 URL:            https://%{provider_prefix}
 Source0:        https://%{provider_prefix}/archive/%{commit}/%{repo}-%{shortcommit}.tar.gz
@@ -300,22 +300,22 @@ export GOPATH=%{buildroot}/%{gopath}:$(pwd)/vendor:%{gopath}
 
 %files
 %license LICENSE
-%doc CHANGELOG.md CONTRIBUTING.md README.md RELEASE.md ROADMAP.md code-of-conduct.md
+%doc CHANGELOG.md ROADMAP.md CONTRIBUTING.md code-of-conduct.md README.md RELEASE.md
 #%{_bindir}/
 
 %if 0%{?with_devel}
 %files devel -f devel.file-list
 %license LICENSE
-%doc CHANGELOG.md CONTRIBUTING.md README.md RELEASE.md ROADMAP.md code-of-conduct.md
+%doc CHANGELOG.md ROADMAP.md CONTRIBUTING.md code-of-conduct.md README.md RELEASE.md
 %dir %{gopath}/src/%{provider}.%{provider_tld}/%{project}
 %endif
 
 %if 0%{?with_unit_test} && 0%{?with_devel}
 %files unit-test-devel -f unit-test-devel.file-list
 %license LICENSE
-%doc CHANGELOG.md CONTRIBUTING.md README.md RELEASE.md ROADMAP.md code-of-conduct.md
+%doc CHANGELOG.md ROADMAP.md CONTRIBUTING.md code-of-conduct.md README.md RELEASE.md
 %endif
 
-%changelog* Sat Feb 25 2017 vagrant <surajssd009005@gmail.com> - 0-0.1.git135165b
+%changelog* Sat Mar 11 2017 vagrant - 0-0.1.git135165b
 - First package for Fedora
 
