@@ -53,7 +53,7 @@
 
 Name:           kompose
 Version:        0.5.0
-Release:        0.1.git%{shortcommit}%{?dist}
+Release:        0.1%{?dist}
 Summary:        Tool to move from 'docker-compose' to Kubernetes
 License:        ASL 2.0
 URL:            https://%{provider_prefix}
