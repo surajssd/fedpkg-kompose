@@ -894,9 +894,18 @@ export GOPATH=$(pwd):%{gopath}
 export LDFLAGS=%{ldflags}
 %gobuild %{buildflags} -o bin/kompose %{import_path}/
 
+bin/kompose completion zsh > kompose.zsh
+bin/kompose completion bash > kompose.bash
+
 %install
 install -d -p %{buildroot}%{_bindir}
 install -p -m 0755 bin/kompose %{buildroot}%{_bindir}
+
+install -d -p $RPM_BUILD_ROOT%{_datadir}/zsh/site-functions
+install -p -m 0644 kompose.zsh $RPM_BUILD_ROOT%{_datadir}/zsh/site-functions/kompose
+
+install -d -p $RPM_BUILD_ROOT%{_datadir}/bash-completion/completions
+install -p -m 0644 kompose.bash $RPM_BUILD_ROOT%{_datadir}/bash-completion/completions/kompose
 
 # source codes for building projects
 %if 0%{?with_devel}
@@ -972,7 +981,8 @@ export LDFLAGS=%{ldflags}
 %license LICENSE
 %doc RELEASE.md CHANGELOG.md README.md CONTRIBUTING.md ROADMAP.md code-of-conduct.md
 %{_bindir}/kompose
-
+%{_datadir}/zsh/site-functions
+%{_datadir}/bash-completion/completions
 
 %if 0%{?with_devel}
 %files devel -f devel.file-list
