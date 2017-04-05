@@ -40,7 +40,7 @@
 # https://github.com/kubernetes-incubator/kompose
 %global provider_prefix %{provider}.%{provider_tld}/%{project}/%{repo}
 %global import_path     %{provider_prefix}
-%global commit          4e3300c642993cd1ed42ebc0a97782eef66f18f3
+%global commit          c01bcce02e9ec68d76ad7611c39540bdeb2c1f16
 %global shortcommit     %(c=%{commit}; echo ${c:0:7})
 
 # define ldflags, buildflags, testflags here. The ldflags/buildflags
@@ -52,7 +52,7 @@
 %global testflags -race -cover -v
 
 Name:           kompose
-Version:        0.4.0
+Version:        0.5.0
 Release:        0.1.git%{shortcommit}%{?dist}
 Summary:        Tool to move from 'docker-compose' to Kubernetes
 License:        ASL 2.0
@@ -84,9 +84,11 @@ BuildRequires: golang(github.com/openshift/origin/pkg/client)
 BuildRequires: golang(k8s.io/kubernetes/pkg/client/unversioned/clientcmd)
 BuildRequires: golang(github.com/openshift/origin/pkg/deploy/api/install)
 BuildRequires: golang(github.com/spf13/viper)
+BuildRequires: golang(k8s.io/kubernetes/pkg/labels)
 BuildRequires: golang(github.com/openshift/origin/pkg/route/api)
 BuildRequires: golang(github.com/docker/libcompose/lookup)
 BuildRequires: golang(github.com/docker/libcompose/yaml)
+BuildRequires: golang(k8s.io/kubernetes/pkg/api/meta)
 BuildRequires: golang(k8s.io/kubernetes/pkg/kubectl/cmd/util)
 BuildRequires: golang(github.com/docker/libcompose/project)
 BuildRequires: golang(k8s.io/kubernetes/pkg/kubectl)
@@ -424,7 +426,7 @@ Provides: bundled(golang(golang.org/x/oauth2/google)) = %{version}-3c3a985cb79f5
 Provides: bundled(golang(golang.org/x/oauth2/internal)) = %{version}-3c3a985cb79f52a3190fbc056984415ca6763d01
 Provides: bundled(golang(golang.org/x/oauth2/jws)) = %{version}-3c3a985cb79f52a3190fbc056984415ca6763d01
 Provides: bundled(golang(golang.org/x/oauth2/jwt)) = %{version}-3c3a985cb79f52a3190fbc056984415ca6763d01
-Provides: bundled(golang(golang.org/x/sys/unix)) = %{version}-833a04a10549a95dc34458c195cbad61bbb6cb4d
+Provides: bundled(golang(golang.org/x/sys/unix)) = %{version}-9a7256cb28ed514b4e1e5f68959914c4c28a92e0
 Provides: bundled(golang(golang.org/x/text/cases)) = %{version}-ceefd2213ed29504fff30155163c8f59827734f3
 Provides: bundled(golang(golang.org/x/text/internal/tag)) = %{version}-ceefd2213ed29504fff30155163c8f59827734f3
 Provides: bundled(golang(golang.org/x/text/language)) = %{version}-ceefd2213ed29504fff30155163c8f59827734f3
@@ -780,6 +782,7 @@ BuildRequires: golang(github.com/spf13/cobra)
 BuildRequires: golang(github.com/spf13/viper)
 BuildRequires: golang(k8s.io/kubernetes/pkg/api)
 BuildRequires: golang(k8s.io/kubernetes/pkg/api/install)
+BuildRequires: golang(k8s.io/kubernetes/pkg/api/meta)
 BuildRequires: golang(k8s.io/kubernetes/pkg/api/resource)
 BuildRequires: golang(k8s.io/kubernetes/pkg/api/unversioned)
 BuildRequires: golang(k8s.io/kubernetes/pkg/apis/extensions)
@@ -788,6 +791,7 @@ BuildRequires: golang(k8s.io/kubernetes/pkg/client/unversioned)
 BuildRequires: golang(k8s.io/kubernetes/pkg/client/unversioned/clientcmd)
 BuildRequires: golang(k8s.io/kubernetes/pkg/kubectl)
 BuildRequires: golang(k8s.io/kubernetes/pkg/kubectl/cmd/util)
+BuildRequires: golang(k8s.io/kubernetes/pkg/labels)
 BuildRequires: golang(k8s.io/kubernetes/pkg/runtime)
 BuildRequires: golang(k8s.io/kubernetes/pkg/util/intstr)
 %endif
@@ -817,6 +821,7 @@ Requires:      golang(github.com/spf13/cobra)
 Requires:      golang(github.com/spf13/viper)
 Requires:      golang(k8s.io/kubernetes/pkg/api)
 Requires:      golang(k8s.io/kubernetes/pkg/api/install)
+Requires:      golang(k8s.io/kubernetes/pkg/api/meta)
 Requires:      golang(k8s.io/kubernetes/pkg/api/resource)
 Requires:      golang(k8s.io/kubernetes/pkg/api/unversioned)
 Requires:      golang(k8s.io/kubernetes/pkg/apis/extensions)
@@ -825,6 +830,7 @@ Requires:      golang(k8s.io/kubernetes/pkg/client/unversioned)
 Requires:      golang(k8s.io/kubernetes/pkg/client/unversioned/clientcmd)
 Requires:      golang(k8s.io/kubernetes/pkg/kubectl)
 Requires:      golang(k8s.io/kubernetes/pkg/kubectl/cmd/util)
+Requires:      golang(k8s.io/kubernetes/pkg/labels)
 Requires:      golang(k8s.io/kubernetes/pkg/runtime)
 Requires:      golang(k8s.io/kubernetes/pkg/util/intstr)
 
@@ -967,6 +973,7 @@ export LDFLAGS=%{ldflags}
 %doc RELEASE.md CHANGELOG.md README.md CONTRIBUTING.md ROADMAP.md code-of-conduct.md
 %{_bindir}/kompose
 
+
 %if 0%{?with_devel}
 %files devel -f devel.file-list
 %license LICENSE
@@ -981,6 +988,9 @@ export LDFLAGS=%{ldflags}
 %endif
 
 %changelog
+* Tue Apr 04 2017 Suraj Deshmukh <surajssd009005@gmail.com> - 0.5.0-0.1.gitc01bcce
+- Update to kompose version 0.5.0
+
 * Wed Mar 22 2017 Suraj Deshmukh <surajssd009005@gmail.com> - 0.4.0-0.1.git4e3300c
 - Update to kompose version 0.4.0
 
