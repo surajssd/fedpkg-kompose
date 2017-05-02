@@ -47,7 +47,7 @@
 # were taken from script/.build and the testflags were taken from
 # script/test-unit. We will need to periodically check these for
 # consistency.
-%global ldflags "-w -X github.com/kubernetes-incubator/kompose/version.GITCOMMIT=%{shortcommit}"
+%global ldflags "-w -X github.com/kubernetes-incubator/kompose/cmd.GITCOMMIT=%{shortcommit}"
 %global buildflags %nil
 %global testflags -race -cover -v
 
@@ -892,7 +892,7 @@ export GOPATH=$(pwd):%{gopath}
 %endif
 
 export LDFLAGS=%{ldflags}
-%gobuild %{buildflags} -o bin/kompose %{import_path}/
+%gobuild %{buildflags} -ldflags "${LDFLAGS:-}" -o bin/kompose %{import_path}/
 
 bin/kompose completion zsh > kompose.zsh
 bin/kompose completion bash > kompose.bash
