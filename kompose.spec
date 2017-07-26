@@ -30,7 +30,7 @@
 
 # https://fedoraproject.org/wiki/PackagingDrafts/Go#Debuginfo
 %if ! 0%{?gobuild:1}
-%define gobuild(o:) go build -ldflags "${LDFLAGS:-} -B 0x$(head -c20 /dev/urandom|od -An -tx1|tr -d ' \\n')" -a -v -x 2f0996
+%define gobuild(o:) go build -ldflags "${LDFLAGS:-} -B 0x$(head -c20 /dev/urandom|od -An -tx1|tr -d ' \\n')" -a -v -x %{?**};
 %endif
 
 %global provider        github
@@ -53,14 +53,14 @@
 
 Name:           kompose
 Version:        1.0.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Tool to move from 'docker-compose' to Kubernetes
 License:        ASL 2.0
 URL:            https://%{provider_prefix}
 Source0:        https://%{provider_prefix}/archive/%{commit}/%{repo}-%{shortcommit}.tar.gz
 
 # e.g. el6 has ppc64 arch without gcc-go, so EA tag is required
-ExclusiveArch:  %{?go_arches:%{go_arches}}%{!?go_arches:%{ix86} x86_64 aarch64 %{arm}}
+ExclusiveArch:  %{ix86} x86_64 %{arm} aarch64 s390x
 # If go_compiler is not set to 1, there is no virtual provide. Use golang instead.
 BuildRequires:  %{?go_compiler:compiler(go-compiler)}%{!?go_compiler:golang}
 
@@ -1033,6 +1033,9 @@ export LDFLAGS=%{ldflags}
 %endif
 
 %changelog
+* Wed Jul 26 2017 Praveen Kumar <kumarpraveen.nitdgp@gmail.com> - 1.0.0-2.git2f0996
+- Fix arch listing for Fedora/EPEL
+
 * Fri Jul 21 2017 Suraj Deshmukh <surajssd009005@gmail.com> - 1.0.0-1.git2f0996
 - Update to kompose version 1.0.0
 
