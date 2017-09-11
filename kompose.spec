@@ -67,11 +67,6 @@ BuildRequires:  %{?go_compiler:compiler(go-compiler)}%{!?go_compiler:golang}
 # Adding dependecy as 'git'
 Requires: git
 
-# Adding dependency as 'docker'
-%if 0%{?fedora}
-Recommends: docker
-%endif
-
 # Main package BuildRequires
 %if ! 0%{?with_bundled}
 # Remaining dependencies not included in main packages
