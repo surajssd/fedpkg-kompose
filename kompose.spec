@@ -40,7 +40,7 @@
 # https://github.com/kubernetes/kompose
 %global provider_prefix %{provider}.%{provider_tld}/%{project}/%{repo}
 %global import_path     %{provider_prefix}
-%global commit          36652f6d81acdc1c8f6f9151469fdd22967911cc
+%global commit          99f88ef15c306cee1db906569f3f8d224b62b25f
 %global shortcommit     %(c=%{commit}; echo ${c:0:7})
 
 # define ldflags, buildflags, testflags here. The ldflags/buildflags
@@ -52,8 +52,8 @@
 %global testflags -race -cover -v
 
 Name:           kompose
-Version:        1.1.0
-Release:        0.1%{?dist}
+Version:        1.2.0
+Release:        1%{?dist}
 Summary:        Tool to move from 'docker-compose' to Kubernetes
 License:        ASL 2.0
 URL:            https://%{provider_prefix}
@@ -1028,6 +1028,9 @@ export LDFLAGS=%{ldflags}
 %endif
 
 %changelog
+* Wed Sep 20 2017 Suraj Deshmukh <surajssd009005@gmail.com> - 1.2.0-0.1.git99f88ef
+- Update to kompose version 1.2.0
+
 * Mon Sep 11 2017 Suraj Deshmukh <surajssd009005@gmail.com> - 1.1.0-0.1.git36652f6
 - Update to kompose version 1.1.0
 
