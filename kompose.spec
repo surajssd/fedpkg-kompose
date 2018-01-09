@@ -7,7 +7,7 @@
 # Build project from bundled dependencies
 %global with_bundled 1
 # Build with debug info rpm
-%global with_debug 1
+%global with_debug 0
 # Run tests in check section
 %global with_check 1
 # Generate unit-test rpm
@@ -40,7 +40,7 @@
 # https://github.com/kubernetes/kompose
 %global provider_prefix %{provider}.%{provider_tld}/%{project}/%{repo}
 %global import_path     %{provider_prefix}
-%global commit          4f187a13d77e77c82334a3703cae02fc0b48497e
+%global commit          767ab4b1f9811cc6ca122d89310391c1ff47c3c9
 %global shortcommit     %(c=%{commit}; echo ${c:0:7})
 
 # define ldflags, buildflags, testflags here. The ldflags/buildflags
@@ -52,7 +52,7 @@
 %global testflags -race -cover -v
 
 Name:           kompose
-Version:        1.3.0
+Version:        1.7.0
 Release:        1%{?dist}
 Summary:        Tool to move from 'docker-compose' to Kubernetes
 License:        ASL 2.0
@@ -79,7 +79,7 @@ BuildRequires: golang(github.com/ghodss/yaml)
 BuildRequires: golang(github.com/docker/cli/cli/compose/loader)
 BuildRequires: golang(github.com/openshift/origin/pkg/deploy/cmd)
 BuildRequires: golang(github.com/novln/docker-parser)
-BuildRequires: golang(github.com/Sirupsen/logrus)
+BuildRequires: golang(github.com/sirupsen/logrus)
 BuildRequires: golang(github.com/docker/cli/cli/compose/types)
 BuildRequires: golang(github.com/openshift/origin/pkg/route/api/install)
 BuildRequires: golang(github.com/openshift/origin/pkg/deploy/api)
@@ -193,12 +193,12 @@ Provides: bundled(golang(github.com/coreos/pkg/health)) = %{version}-fa29b1d70f0
 Provides: bundled(golang(github.com/coreos/pkg/httputil)) = %{version}-fa29b1d70f0beaddd4c7021607cc3c3be8ce94b8
 Provides: bundled(golang(github.com/coreos/pkg/timeutil)) = %{version}-fa29b1d70f0beaddd4c7021607cc3c3be8ce94b8
 Provides: bundled(golang(github.com/davecgh/go-spew/spew)) = %{version}-5215b55f46b2b919f50a1df0eaa5886afe4e3b3d
-Provides: bundled(golang(github.com/docker/cli/cli/compose/interpolation)) = %{version}-9bdb0763b9e667dc01adf36ba98a2b7bd47bdc75
-Provides: bundled(golang(github.com/docker/cli/cli/compose/loader)) = %{version}-9bdb0763b9e667dc01adf36ba98a2b7bd47bdc75
-Provides: bundled(golang(github.com/docker/cli/cli/compose/schema)) = %{version}-9bdb0763b9e667dc01adf36ba98a2b7bd47bdc75
-Provides: bundled(golang(github.com/docker/cli/cli/compose/template)) = %{version}-9bdb0763b9e667dc01adf36ba98a2b7bd47bdc75
-Provides: bundled(golang(github.com/docker/cli/cli/compose/types)) = %{version}-9bdb0763b9e667dc01adf36ba98a2b7bd47bdc75
-Provides: bundled(golang(github.com/docker/cli/opts)) = %{version}-9bdb0763b9e667dc01adf36ba98a2b7bd47bdc75
+Provides: bundled(golang(github.com/docker/cli/cli/compose/interpolation)) = %{version}-9b7656cc05d2878c85dc1252f5813f0ad77d808f
+Provides: bundled(golang(github.com/docker/cli/cli/compose/loader)) = %{version}-9b7656cc05d2878c85dc1252f5813f0ad77d808f
+Provides: bundled(golang(github.com/docker/cli/cli/compose/schema)) = %{version}-9b7656cc05d2878c85dc1252f5813f0ad77d808f
+Provides: bundled(golang(github.com/docker/cli/cli/compose/template)) = %{version}-9b7656cc05d2878c85dc1252f5813f0ad77d808f
+Provides: bundled(golang(github.com/docker/cli/cli/compose/types)) = %{version}-9b7656cc05d2878c85dc1252f5813f0ad77d808f
+Provides: bundled(golang(github.com/docker/cli/opts)) = %{version}-9b7656cc05d2878c85dc1252f5813f0ad77d808f
 Provides: bundled(golang(github.com/docker/distribution/configuration)) = %{version}-12acdf0a6c1e56d965ac6eb395d2bce687bf22fc
 Provides: bundled(golang(github.com/docker/distribution/context)) = %{version}-12acdf0a6c1e56d965ac6eb395d2bce687bf22fc
 Provides: bundled(golang(github.com/docker/distribution/digest)) = %{version}-12acdf0a6c1e56d965ac6eb395d2bce687bf22fc
@@ -251,7 +251,6 @@ Provides: bundled(golang(github.com/docker/docker/api/types/strslice)) = %{versi
 Provides: bundled(golang(github.com/docker/docker/api/types/swarm)) = %{version}-58b1788c81f937bb2aaf1b0077c6b3b23a8397ff
 Provides: bundled(golang(github.com/docker/docker/api/types/versions)) = %{version}-58b1788c81f937bb2aaf1b0077c6b3b23a8397ff
 Provides: bundled(golang(github.com/docker/docker/pkg/urlutil)) = %{version}-58b1788c81f937bb2aaf1b0077c6b3b23a8397ff
-Provides: bundled(golang(github.com/docker/docker/runconfig/opts)) = %{version}-58b1788c81f937bb2aaf1b0077c6b3b23a8397ff
 Provides: bundled(golang(github.com/docker/engine-api/client)) = %{version}-dea108d3aa0c67d7162a3fd8aa65f38a430019fd
 Provides: bundled(golang(github.com/docker/engine-api/client/transport)) = %{version}-dea108d3aa0c67d7162a3fd8aa65f38a430019fd
 Provides: bundled(golang(github.com/docker/engine-api/client/transport/cancellable)) = %{version}-dea108d3aa0c67d7162a3fd8aa65f38a430019fd
@@ -268,14 +267,14 @@ Provides: bundled(golang(github.com/docker/engine-api/types/versions)) = %{versi
 Provides: bundled(golang(github.com/docker/go-connections/nat)) = %{version}-f549a9393d05688dff0992ef3efd8bbe6c628aeb
 Provides: bundled(golang(github.com/docker/go-connections/sockets)) = %{version}-f549a9393d05688dff0992ef3efd8bbe6c628aeb
 Provides: bundled(golang(github.com/docker/go-connections/tlsconfig)) = %{version}-f549a9393d05688dff0992ef3efd8bbe6c628aeb
-Provides: bundled(golang(github.com/docker/libcompose/config)) = %{version}-4a647d664afbe05c41455c9d534d8239671eb46a
-Provides: bundled(golang(github.com/docker/libcompose/logger)) = %{version}-4a647d664afbe05c41455c9d534d8239671eb46a
-Provides: bundled(golang(github.com/docker/libcompose/lookup)) = %{version}-4a647d664afbe05c41455c9d534d8239671eb46a
-Provides: bundled(golang(github.com/docker/libcompose/project)) = %{version}-4a647d664afbe05c41455c9d534d8239671eb46a
-Provides: bundled(golang(github.com/docker/libcompose/project/events)) = %{version}-4a647d664afbe05c41455c9d534d8239671eb46a
-Provides: bundled(golang(github.com/docker/libcompose/project/options)) = %{version}-4a647d664afbe05c41455c9d534d8239671eb46a
-Provides: bundled(golang(github.com/docker/libcompose/utils)) = %{version}-4a647d664afbe05c41455c9d534d8239671eb46a
-Provides: bundled(golang(github.com/docker/libcompose/yaml)) = %{version}-4a647d664afbe05c41455c9d534d8239671eb46a
+Provides: bundled(golang(github.com/docker/libcompose/config)) = %{version}-57bd716502dcbe1799f026148016022b0f3b989c
+Provides: bundled(golang(github.com/docker/libcompose/logger)) = %{version}-57bd716502dcbe1799f026148016022b0f3b989c
+Provides: bundled(golang(github.com/docker/libcompose/lookup)) = %{version}-57bd716502dcbe1799f026148016022b0f3b989c
+Provides: bundled(golang(github.com/docker/libcompose/project)) = %{version}-57bd716502dcbe1799f026148016022b0f3b989c
+Provides: bundled(golang(github.com/docker/libcompose/project/events)) = %{version}-57bd716502dcbe1799f026148016022b0f3b989c
+Provides: bundled(golang(github.com/docker/libcompose/project/options)) = %{version}-57bd716502dcbe1799f026148016022b0f3b989c
+Provides: bundled(golang(github.com/docker/libcompose/utils)) = %{version}-57bd716502dcbe1799f026148016022b0f3b989c
+Provides: bundled(golang(github.com/docker/libcompose/yaml)) = %{version}-57bd716502dcbe1799f026148016022b0f3b989c
 Provides: bundled(golang(github.com/emicklei/go-restful/log)) = %{version}-89ef8af493ab468a45a42bb0d89a06fccdd2fb22
 Provides: bundled(golang(github.com/emicklei/go-restful/swagger)) = %{version}-89ef8af493ab468a45a42bb0d89a06fccdd2fb22
 Provides: bundled(golang(github.com/fsouza/go-dockerclient/external/github.com/Sirupsen/logrus)) = %{version}-bf97c77db7c945cbcdbf09d56c6f87a66f54537b
@@ -365,20 +364,20 @@ Provides: bundled(golang(github.com/google/cadvisor/version)) = %{version}-ef63d
 Provides: bundled(golang(github.com/grpc-ecosystem/grpc-gateway/runtime)) = %{version}-f52d055dc48aec25854ed7d31862f78913cf17d1
 Provides: bundled(golang(github.com/grpc-ecosystem/grpc-gateway/runtime/internal)) = %{version}-f52d055dc48aec25854ed7d31862f78913cf17d1
 Provides: bundled(golang(github.com/grpc-ecosystem/grpc-gateway/utilities)) = %{version}-f52d055dc48aec25854ed7d31862f78913cf17d1
-Provides: bundled(golang(github.com/hashicorp/hcl/hcl/ast)) = %{version}-42e33e2d55a0ff1d6263f738896ea8c13571a8d0
-Provides: bundled(golang(github.com/hashicorp/hcl/hcl/parser)) = %{version}-42e33e2d55a0ff1d6263f738896ea8c13571a8d0
-Provides: bundled(golang(github.com/hashicorp/hcl/hcl/scanner)) = %{version}-42e33e2d55a0ff1d6263f738896ea8c13571a8d0
-Provides: bundled(golang(github.com/hashicorp/hcl/hcl/strconv)) = %{version}-42e33e2d55a0ff1d6263f738896ea8c13571a8d0
-Provides: bundled(golang(github.com/hashicorp/hcl/hcl/token)) = %{version}-42e33e2d55a0ff1d6263f738896ea8c13571a8d0
-Provides: bundled(golang(github.com/hashicorp/hcl/json/parser)) = %{version}-42e33e2d55a0ff1d6263f738896ea8c13571a8d0
-Provides: bundled(golang(github.com/hashicorp/hcl/json/scanner)) = %{version}-42e33e2d55a0ff1d6263f738896ea8c13571a8d0
-Provides: bundled(golang(github.com/hashicorp/hcl/json/token)) = %{version}-42e33e2d55a0ff1d6263f738896ea8c13571a8d0
+Provides: bundled(golang(github.com/hashicorp/hcl/hcl/ast)) = %{version}-23c074d0eceb2b8a5bfdbb271ab780cde70f05a8
+Provides: bundled(golang(github.com/hashicorp/hcl/hcl/parser)) = %{version}-23c074d0eceb2b8a5bfdbb271ab780cde70f05a8
+Provides: bundled(golang(github.com/hashicorp/hcl/hcl/scanner)) = %{version}-23c074d0eceb2b8a5bfdbb271ab780cde70f05a8
+Provides: bundled(golang(github.com/hashicorp/hcl/hcl/strconv)) = %{version}-23c074d0eceb2b8a5bfdbb271ab780cde70f05a8
+Provides: bundled(golang(github.com/hashicorp/hcl/hcl/token)) = %{version}-23c074d0eceb2b8a5bfdbb271ab780cde70f05a8
+Provides: bundled(golang(github.com/hashicorp/hcl/json/parser)) = %{version}-23c074d0eceb2b8a5bfdbb271ab780cde70f05a8
+Provides: bundled(golang(github.com/hashicorp/hcl/json/scanner)) = %{version}-23c074d0eceb2b8a5bfdbb271ab780cde70f05a8
+Provides: bundled(golang(github.com/hashicorp/hcl/json/token)) = %{version}-23c074d0eceb2b8a5bfdbb271ab780cde70f05a8
 Provides: bundled(golang(github.com/matttproud/golang_protobuf_extensions/pbutil)) = %{version}-fc2b8d3a73c4867e51861bbdd5ae3c1f0869dd6a
 Provides: bundled(golang(github.com/novln/docker-parser/distribution/digest)) = %{version}-6030251119d652af8ead44ac7907444227b64d56
 Provides: bundled(golang(github.com/novln/docker-parser/distribution/reference)) = %{version}-6030251119d652af8ead44ac7907444227b64d56
 Provides: bundled(golang(github.com/novln/docker-parser/docker)) = %{version}-6030251119d652af8ead44ac7907444227b64d56
-Provides: bundled(golang(github.com/opencontainers/image-spec/specs-go)) = %{version}-7c889fafd04a893f5c5f50b7ab9963d5d64e5242
-Provides: bundled(golang(github.com/opencontainers/image-spec/specs-go/v1)) = %{version}-7c889fafd04a893f5c5f50b7ab9963d5d64e5242
+Provides: bundled(golang(github.com/opencontainers/image-spec/specs-go)) = %{version}-577479e4dc273d3779f00c223c7e0dba4cd6b8b0
+Provides: bundled(golang(github.com/opencontainers/image-spec/specs-go/v1)) = %{version}-577479e4dc273d3779f00c223c7e0dba4cd6b8b0
 Provides: bundled(golang(github.com/openshift/origin/pkg/api)) = %{version}-b4e0954faa4a0d11d9c1a536b76ad4a8c0206b7c
 Provides: bundled(golang(github.com/openshift/origin/pkg/api/extension)) = %{version}-b4e0954faa4a0d11d9c1a536b76ad4a8c0206b7c
 Provides: bundled(golang(github.com/openshift/origin/pkg/api/latest)) = %{version}-b4e0954faa4a0d11d9c1a536b76ad4a8c0206b7c
@@ -425,9 +424,10 @@ Provides: bundled(golang(github.com/prometheus/client_model/go)) = %{version}-fa
 Provides: bundled(golang(github.com/prometheus/common/expfmt)) = %{version}-a6ab08426bb262e2d190097751f5cfd1cfdfd17d
 Provides: bundled(golang(github.com/prometheus/common/internal/bitbucket.org/ww/goautoneg)) = %{version}-a6ab08426bb262e2d190097751f5cfd1cfdfd17d
 Provides: bundled(golang(github.com/prometheus/common/model)) = %{version}-a6ab08426bb262e2d190097751f5cfd1cfdfd17d
-Provides: bundled(golang(github.com/spf13/afero/mem)) = %{version}-e67d870304c4bca21331b02f414f970df13aa694
+Provides: bundled(golang(github.com/Sirupsen/logrus/formatters/logstash)) = %{version}-aaf92c95712104318fc35409745f1533aa5ff327
+Provides: bundled(golang(github.com/spf13/afero/mem)) = %{version}-8d919cbe7e2627e417f3e45c3c0e489a5b7e2536
 Provides: bundled(golang(github.com/ugorji/go/codec)) = %{version}-f4485b318aadd133842532f841dc205a8e339d74
-Provides: bundled(golang(golang.org/x/crypto/ssh/terminal)) = %{version}-1f22c0103821b9390939b6776727195525381532
+Provides: bundled(golang(golang.org/x/crypto/ssh/terminal)) = %{version}-94eea52f7b742c7cbe0b03b22f0c4c8631ece122
 Provides: bundled(golang(golang.org/x/net/context)) = %{version}-e90d6d0afc4c315a0d87a568ae68577cc15149a0
 Provides: bundled(golang(golang.org/x/net/context/ctxhttp)) = %{version}-e90d6d0afc4c315a0d87a568ae68577cc15149a0
 Provides: bundled(golang(golang.org/x/net/html)) = %{version}-e90d6d0afc4c315a0d87a568ae68577cc15149a0
@@ -445,6 +445,7 @@ Provides: bundled(golang(golang.org/x/oauth2/internal)) = %{version}-3c3a985cb79
 Provides: bundled(golang(golang.org/x/oauth2/jws)) = %{version}-3c3a985cb79f52a3190fbc056984415ca6763d01
 Provides: bundled(golang(golang.org/x/oauth2/jwt)) = %{version}-3c3a985cb79f52a3190fbc056984415ca6763d01
 Provides: bundled(golang(golang.org/x/sys/unix)) = %{version}-ebfc5b4631820b793c9010c87fd8fef0f39eb082
+Provides: bundled(golang(golang.org/x/sys/windows)) = %{version}-ebfc5b4631820b793c9010c87fd8fef0f39eb082
 Provides: bundled(golang(golang.org/x/text/cases)) = %{version}-ceefd2213ed29504fff30155163c8f59827734f3
 Provides: bundled(golang(golang.org/x/text/internal/tag)) = %{version}-ceefd2213ed29504fff30155163c8f59827734f3
 Provides: bundled(golang(golang.org/x/text/language)) = %{version}-ceefd2213ed29504fff30155163c8f59827734f3
@@ -777,7 +778,7 @@ BuildArch:     noarch
 # devel subpackage BuildRequires
 %if 0%{?with_check} && ! 0%{?with_bundled}
 # These buildrequires are only for our tests (check)
-BuildRequires: golang(github.com/Sirupsen/logrus)
+BuildRequires: golang(github.com/sirupsen/logrus)
 BuildRequires: golang(github.com/docker/cli/cli/compose/loader)
 BuildRequires: golang(github.com/docker/cli/cli/compose/types)
 BuildRequires: golang(github.com/docker/libcompose/config)
@@ -823,7 +824,7 @@ BuildRequires: golang(k8s.io/kubernetes/pkg/util/intstr)
 
 # devel subpackage Requires. This is basically the source code from
 # all of the libraries that kompose imports during build.
-Requires:      golang(github.com/Sirupsen/logrus)
+Requires:      golang(github.com/sirupsen/logrus)
 Requires:      golang(github.com/docker/cli/cli/compose/loader)
 Requires:      golang(github.com/docker/cli/cli/compose/types)
 Requires:      golang(github.com/docker/libcompose/config)
@@ -879,6 +880,7 @@ Provides:      golang(%{import_path}/pkg/transformer/kubernetes) = %{version}-%{
 Provides:      golang(%{import_path}/pkg/transformer/openshift) = %{version}-%{release}
 Provides:      golang(%{import_path}/pkg/utils/archive) = %{version}-%{release}
 Provides:      golang(%{import_path}/pkg/utils/docker) = %{version}-%{release}
+Provides:      golang(%{import_path}/pkg/version) = %{version}-%{release}
 
 %description devel
 %{summary}
@@ -1013,7 +1015,7 @@ export LDFLAGS=%{ldflags}
 
 %files
 %license LICENSE
-%doc RELEASE.md CHANGELOG.md README.md CONTRIBUTING.md ROADMAP.md code-of-conduct.md
+%doc code-of-conduct.md CHANGELOG.md RELEASE.md ROADMAP.md README.md CONTRIBUTING.md
 %{_bindir}/kompose
 %{_datadir}/zsh/site-functions
 %{_datadir}/bash-completion/completions
@@ -1021,17 +1023,20 @@ export LDFLAGS=%{ldflags}
 %if 0%{?with_devel}
 %files devel -f devel.file-list
 %license LICENSE
-%doc RELEASE.md CHANGELOG.md README.md CONTRIBUTING.md ROADMAP.md code-of-conduct.md
+%doc code-of-conduct.md CHANGELOG.md RELEASE.md ROADMAP.md README.md CONTRIBUTING.md
 %dir %{gopath}/src/%{provider}.%{provider_tld}/%{project}
 %endif
 
 %if 0%{?with_unit_test} && 0%{?with_devel}
 %files unit-test-devel -f unit-test-devel.file-list
 %license LICENSE
-%doc RELEASE.md CHANGELOG.md README.md CONTRIBUTING.md ROADMAP.md code-of-conduct.md
+%doc code-of-conduct.md CHANGELOG.md RELEASE.md ROADMAP.md README.md CONTRIBUTING.md
 %endif
 
 %changelog
+* Tue Jan 09 2018 Suraj Deshmukh <surajd.service@gmail.com> - 1.7.0-0.1.git767ab4b
+- First package for Fedora
+
 * Wed Oct 11 2017 Suraj Deshmukh <surajd.service@gmail.com> - 1.3.0-0.1.git4f187a1
 - Update to kompose version 1.3.0
 
