@@ -40,7 +40,7 @@
 # https://github.com/kubernetes/kompose
 %global provider_prefix %{provider}.%{provider_tld}/%{project}/%{repo}
 %global import_path     %{provider_prefix}
-%global commit          767ab4b1f9811cc6ca122d89310391c1ff47c3c9
+%global commit          39ad6140c33d35954aed38a66155f4ac392ce547
 %global shortcommit     %(c=%{commit}; echo ${c:0:7})
 
 # define ldflags, buildflags, testflags here. The ldflags/buildflags
@@ -52,7 +52,7 @@
 %global testflags -race -cover -v
 
 Name:           kompose
-Version:        1.7.0
+Version:        1.11.0
 Release:        1%{?dist}
 Summary:        Tool to move from 'docker-compose' to Kubernetes
 License:        ASL 2.0
@@ -1034,8 +1034,11 @@ export LDFLAGS=%{ldflags}
 %endif
 
 %changelog
+* Mon Apr 16 2018 Suraj Deshmukh <surajd.service@gmail.com> - 1.11.0-0.1.git39ad614
+- Update to kompose version 1.11.0
+
 * Tue Jan 09 2018 Suraj Deshmukh <surajd.service@gmail.com> - 1.7.0-0.1.git767ab4b
-- First package for Fedora
+- Update to kompose version 1.7.0
 
 * Wed Oct 11 2017 Suraj Deshmukh <surajd.service@gmail.com> - 1.3.0-0.1.git4f187a1
 - Update to kompose version 1.3.0
