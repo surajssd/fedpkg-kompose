@@ -40,7 +40,7 @@
 # https://github.com/kubernetes/kompose
 %global provider_prefix %{provider}.%{provider_tld}/%{project}/%{repo}
 %global import_path     %{provider_prefix}
-%global commit          767ab4b1f9811cc6ca122d89310391c1ff47c3c9
+%global commit          a74acad03a0de0feba53d67bc2b601d04242f559
 %global shortcommit     %(c=%{commit}; echo ${c:0:7})
 
 # define ldflags, buildflags, testflags here. The ldflags/buildflags
@@ -52,7 +52,7 @@
 %global testflags -race -cover -v
 
 Name:           kompose
-Version:        1.7.0
+Version:        1.17.0
 Release:        1%{?dist}
 Summary:        Tool to move from 'docker-compose' to Kubernetes
 License:        ASL 2.0
@@ -1008,6 +1008,7 @@ export LDFLAGS=%{ldflags}
 %gotest %{buildflags} %{testflags} %{import_path}/pkg/transformer
 %gotest %{buildflags} %{testflags} %{import_path}/pkg/transformer/kubernetes
 %gotest %{buildflags} %{testflags} %{import_path}/pkg/transformer/openshift
+%gotest %{import_path}/script/test/cmd
 %endif
 
 #define license tag if not already defined
@@ -1015,7 +1016,7 @@ export LDFLAGS=%{ldflags}
 
 %files
 %license LICENSE
-%doc code-of-conduct.md CHANGELOG.md RELEASE.md ROADMAP.md README.md CONTRIBUTING.md
+%doc RELEASE.md ROADMAP.md CONTRIBUTING.md code-of-conduct.md CHANGELOG.md README.md
 %{_bindir}/kompose
 %{_datadir}/zsh/site-functions
 %{_datadir}/bash-completion/completions
@@ -1023,19 +1024,23 @@ export LDFLAGS=%{ldflags}
 %if 0%{?with_devel}
 %files devel -f devel.file-list
 %license LICENSE
-%doc code-of-conduct.md CHANGELOG.md RELEASE.md ROADMAP.md README.md CONTRIBUTING.md
+%doc RELEASE.md ROADMAP.md CONTRIBUTING.md code-of-conduct.md CHANGELOG.md README.md
 %dir %{gopath}/src/%{provider}.%{provider_tld}/%{project}
 %endif
 
 %if 0%{?with_unit_test} && 0%{?with_devel}
 %files unit-test-devel -f unit-test-devel.file-list
 %license LICENSE
-%doc code-of-conduct.md CHANGELOG.md RELEASE.md ROADMAP.md README.md CONTRIBUTING.md
+%doc RELEASE.md ROADMAP.md CONTRIBUTING.md code-of-conduct.md CHANGELOG.md README.md
 %endif
 
 %changelog
+
+* Sat Dec 01 2018 Suraj Deshmukh <surajd.service@gmail.com> - 1.17.0-0.1.gita74acad
+- Update to kompose version 1.17.0
+
 * Tue Jan 09 2018 Suraj Deshmukh <surajd.service@gmail.com> - 1.7.0-0.1.git767ab4b
-- First package for Fedora
+- Update to kompose version 1.7.0
 
 * Wed Oct 11 2017 Suraj Deshmukh <surajd.service@gmail.com> - 1.3.0-0.1.git4f187a1
 - Update to kompose version 1.3.0
